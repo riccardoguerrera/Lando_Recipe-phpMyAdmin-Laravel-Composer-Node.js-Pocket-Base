@@ -9,6 +9,6 @@ Non sempre facile da utilizzare, ho deciso di mettere a disposizione questa "rec
 - Node.js
 - Pocket Base
 
-Spero possa aiutare qualcuno (come me qualche giorno fa) alla ricerca di una base da cui partire per il proprio file lando, per capire meglio come integrare nel proprio progetto le tecnologie citate sopra.
+Spero possa aiutare qualcuno (come me qualche giorno fa) alla ricerca di una base da cui partire per il proprio file lando, così da capire meglio come integrare nel proprio progetto le tecnologie citate sopra.
 
 Ps. Spero possiate ottimizzarlo meglio di quanto abbia fatto io!
