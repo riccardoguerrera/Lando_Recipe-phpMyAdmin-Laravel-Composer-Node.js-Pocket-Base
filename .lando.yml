@@ -1,0 +1,70 @@
+name: easyoffice.it-v1
+recipe: lamp
+config:
+  webroot: api.easyoffice.it/public
+  php: 8.1
+  database: mysql:5.7
+  via: apache
+web:
+  ssl: true
+  sslExpose: true
+services:
+  phpmyadmin:
+    type: phpmyadmin
+    scanner: false
+  appserver:
+    webroot: api.easyoffice.it/public
+    scanner: false
+  pocketbase:
+    type: compose
+    scanner: false
+    ssl: true
+    sslExpose: true
+    services:
+      image: ubuntu:latest
+      command: /bin/sh -c "apt-get update && apt-get install -y wget unzip && wget -O pb.zip https://github.com/pocketbase/pocketbase/releases/download/v0.20.6/pocketbase_0.20.6_linux_amd64.zip && unzip -o /pb.zip -d /pb/ && /pb/pocketbase serve --http=0.0.0.0:8081"
+      ports:
+        - '8081:443'
+      volumes:
+        - /home/ricca/DEV/EO/db.easyoffice.it:/pb/
+      networks:
+        - default
+  composer:
+    type: php:8.1
+    via: apache:2.4
+    ssl: false
+    webroot: .
+    xdebug: false
+    composer: []
+    composer_version: '2.2.12'
+  node:
+    type: compose
+    services:
+      image: node:18.17
+      command: /bin/sh -c "npm install -g npm@10.3.0 && node -v && npm -v && tail -f /dev/null"
+      working_dir: /app.easyoffice.it
+      networks:
+        - default
+      ports:
+        - '3000:443'
+      volumes:
+        - /home/ricca/DEV/EO/app.easyoffice.it:/app.easyoffice.it
+    scanner: false
+    ssl: true
+    sslExpose: true
+tooling:
+  npm:
+    service: node
+  npx:
+    service: node
+  yarn:
+    service: node
+  gatsby:
+    service: node
+proxy:
+  appserver:
+    - api.easyoffice.it
+  node:
+    - app.easyoffice.it:3000
+  pocketbase:
+    - db.easyoffice.it:8081
