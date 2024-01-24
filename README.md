@@ -11,4 +11,4 @@ Non sempre facile da utilizzare, ho deciso di mettere a disposizione questa "rec
 
 Spero possa aiutare qualcuno (come me qualche giorno fa) alla ricerca di una base da cui partire per il proprio file lando, così da capire meglio come integrare nel proprio progetto le tecnologie citate sopra.
 
-Ps. Spero possiate ottimizzarlo meglio di quanto abbia fatto io!
+Ps. Spero anche possiate ottimizzarlo meglio di quanto abbia fatto io!
